@@ -39,6 +39,7 @@ db.once("connected", function(){
 
 var clients = {};
 var chats = {};
+var chatUtils = {};
 
 io.on("connection", function(socket){ 
 
@@ -104,12 +105,14 @@ io.on("connection", function(socket){
   socket.on("checkchannel",function (data) {
 
 	var channel = chats[data];
+	//if(){}  
 	socket.join(channel,function(){
 		
 		console.log(socket.id + " now in rooms ", socket.rooms);
 	
 	});
-	io.to(socket.id).emit("gotochannel", channel);
+	//io.to(socket.id).emit("gotochannel", channel);
+	io.to(socket.id).emit("gotochannel", chatUtils[channel]);  
         
   });
 
@@ -143,6 +146,15 @@ io.on("connection", function(socket){
               console.log("user leave room : "+chats[data]);
 
 	});
+  });	
+	
+  //-->
+  socket.on("setChannelData",function (data) {
+       
+	var name=data["room"];
+        var items=data["items"];  
+        chatUtils[room] = items;
+
   });	
 
 
