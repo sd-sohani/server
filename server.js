@@ -153,7 +153,7 @@ io.on("connection", function(socket){
        
 	var name=data["room"];
         var items=data["items"];  
-        chatUtils[room] = items;
+        chatUtils[name] = items;
 
   });	
 
