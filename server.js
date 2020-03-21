@@ -105,6 +105,9 @@ io.on("connection", function(socket){
   socket.on("checkchannel",function (data) {
 
 	var channel = chats[data];
+	console.log("checkchannel : data="+data);  
+	console.log("checkchannel : channel="+channel);
+	console.log("checkchannel : channelDatas="+chatUtils[channel]);    
 	//if(){}  
 	socket.join(channel,function(){
 		
@@ -154,6 +157,9 @@ io.on("connection", function(socket){
 	var name=data["room"];
         var items=data["items"];  
         chatUtils[name] = items;
+	console.log("setChannelData : name="+name);
+	console.log("setChannelData : items="+items);  
+	console.log("setChannelData : chatUtils="+chatUtils[name]);   
 
   });	
 
